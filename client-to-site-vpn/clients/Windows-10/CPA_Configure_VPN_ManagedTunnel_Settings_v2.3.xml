@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="Unicode"?>
+<Configuration>
+ <ClientFirewallPolicyName>User-Defined Value</ClientFirewallPolicyName> <!-- Define Managed Tunnel settings GPO name -->
+  <VPNCore>
+   <IPsecESP>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel IPsec ESP (ESP-Out)</DisplayName>
+      <Description>Allow access to VPN IPsec GW</Description>
+      <Program>Any</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of VPN Server -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>Any</RemotePort>
+      <Protocol>50</Protocol>
+      <Profile>Public,Private</Profile>
+    </FirewallRule>
+   </IPsecESP>
+   <IPsecIKE>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel IPsec IKE (UDP-Out)</DisplayName>
+      <Description>Allow access to VPN IKE GW</Description>
+      <Program>Any</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of VPN Server -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>500</RemotePort>
+      <Protocol>UDP</Protocol>
+      <Profile>Public,Private</Profile>
+    </FirewallRule>
+   </IPsecIKE>
+   <IPsecNAT>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel IPsec NAT-T (UDP-Out)</DisplayName>
+      <Description>Allow access to VPN IPsec GW using NAT</Description>
+      <Program>Any</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of VPN Server -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>4500</RemotePort>
+      <Protocol>UDP</Protocol>
+      <Profile>Public,Private</Profile>
+    </FirewallRule>
+ </IPsecNAT>
+ <VPNIPEncapsulation>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel IP Encapsulation (All-Out)</DisplayName>
+      <Description>Allow access for IP Encapsulation within IP traffic</Description>
+      <Program>Any</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of VPN Server -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>Any</RemotePort>
+      <Protocol>4</Protocol>
+      <Profile>Public,Private</Profile>
+    </FirewallRule>
+ </VPNIPEncapsulation>
+ <IPv4Corp>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel Corp Access (All-Out)</DisplayName>
+      <Description>Allow traffic to corpnet via VPN tunnel</Description>
+      <Program>Any</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>10.0.0.0/8</RemoteAddress> <!-- Define IPv4 subnet and mask of internal network -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>Any</RemotePort>
+      <Protocol>Any</Protocol>
+      <Profile>Public,Private</Profile>
+    </FirewallRule>
+ </IPv4Corp>
+ <NCSIProbes>
+    <FirewallRule>
+      <DisplayName>VPN Managed Tunnel NCSI Probe (TCP-Out)</DisplayName>
+      <Description>Allow access to NCSI websites (www.msftncsi.com)</Description>
+      <Program>%SystemRoot%\system32\svchost.exe</Program>
+      <Service>nlasvc</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress> <!-- Mandatory value DO NOT modify -->
+      <LocalPort>Any</LocalPort>
+      <RemotePort>80</RemotePort>
+      <Protocol>TCP</Protocol>
+      <Profile>Public,Private</Profile>
+   </FirewallRule>
+ </NCSIProbes>
+ <CRL>
+   <FirewallRule>
+     <DisplayName>VPN Managed Tunnel CRL Checking (TCP-Out)</DisplayName>
+     <Description>Allow access to Internet-facing PKI CDP</Description>
+     <Program>Any</Program>
+     <Service>Any</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of PKI CRL Distribution Point (CDP) server -->
+     <LocalPort>Any</LocalPort>
+     <RemotePort>80</RemotePort>
+     <Protocol>TCP</Protocol>
+     <Profile>Public,Private</Profile>
+   </FirewallRule>
+ </CRL>
+</VPNCore>
+<VPNCustom>
+  <AllowedEndpoint>
+   <FirewallRule>
+     <DisplayName>VPN Managed Tunnel Allowed Endpoint - Reverse Proxy (TCP-Out)</DisplayName>
+     <Description>Managed tunnel exception for Internet-facing GW</Description>
+     <Program>Any</Program>
+     <Service>Any</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of Reverse Proxy server -->
+     <LocalPort>Any</LocalPort>
+     <RemotePort>443</RemotePort>
+     <Protocol>TCP</Protocol>
+     <Profile>Public,Private</Profile>
+   </FirewallRule>   
+  </AllowedEndpoint>
+  <AllowedEndpoint>
+   <FirewallRule>
+     <DisplayName>VPN Managed Tunnel Allowed Endpoint - Remote Desktop Gateway (TCP-Out)</DisplayName>
+     <Description>Managed tunnel exception for Internet-facing GW</Description>
+     <Program>Any</Program>
+     <Service>Any</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>1.2.3.4</RemoteAddress> <!-- Define IPv4 address of Remote Desktop Gateway server -->
+     <LocalPort>Any</LocalPort>
+     <RemotePort>443</RemotePort>
+     <Protocol>TCP</Protocol>
+     <Profile>Public,Private</Profile>
+   </FirewallRule>   
+  </AllowedEndpoint>
+</VPNCustom>
+<!-- Mandatory values DO NOT modify below this line -->
+<NetworkingCore>
+  <FirewallRule> 
+     <DisplayName>Platform Guidance DNS (UDP-Out)</DisplayName>
+     <Description>Outbound rule to allow DNS requests for NLA functionality</Description>
+     <Program>%SystemRoot%\system32\svchost.exe</Program>
+     <Service>dnscache</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>Any</RemoteAddress>
+     <LocalPort>Any</LocalPort>
+     <RemotePort>53</RemotePort>
+     <Protocol>UDP</Protocol>
+     <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+     <DisplayName>Platform Guidance DNS (TCP-Out)</DisplayName>
+     <Description>Outbound rule to allow DNS requests for NLA functionality</Description>
+     <Program>%SystemRoot%\system32\svchost.exe</Program>
+     <Service>dnscache</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>Any</RemoteAddress>
+     <LocalPort>Any</LocalPort>
+     <RemotePort>53</RemotePort>
+     <Protocol>TCP</Protocol>
+     <Profile>Any</Profile>
+  </FirewallRule>
+     <FirewallRule>
+     <DisplayName>Platform Guidance LDAP (TCP-Out)</DisplayName>
+     <Description>Outbound rule to allow LDAP requests for NLA functionality</Description>
+     <Program>Any</Program>
+     <Service>nlasvc</Service>
+     <Direction>Outbound</Direction>
+     <Action>Allow</Action>
+     <Enabled>True</Enabled>
+     <LocalAddress>Any</LocalAddress>
+     <RemoteAddress>Any</RemoteAddress>
+     <LocalPort>Any</LocalPort>
+     <RemotePort>389</RemotePort>
+     <Protocol>TCP</Protocol>
+     <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>Platform Guidance LDAP (UDP-Out)</DisplayName>
+      <Description>Outbound rule to allow LDAP requests for NLA functionality</Description>
+      <Program>Any</Program>
+      <Service>nlasvc</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>Any</LocalPort>
+      <RemotePort>389</RemotePort>
+      <Protocol>UDP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>Platform Guidance Kerberos (TCP-Out)</DisplayName>
+      <Description>Outbound rule to allow Kerberos requests for NLA functionality</Description>
+      <Program>%SystemRoot%\System32\lsass.exe</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>Any</LocalPort>
+      <RemotePort>Any</RemotePort>
+      <Protocol>TCP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>Platform Guidance Kerberos (UDP-Out)</DisplayName>
+      <Description>Outbound rule to allow Kerberos requests for NLA functionality</Description>
+      <Program>%SystemRoot%\System32\lsass.exe</Program>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>Any</LocalPort>
+      <RemotePort>Any</RemotePort>
+      <Protocol>UDP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>Platform Guidance DHCP (UDP-Out)</DisplayName>
+      <Description>Outbound rule to allow DHCP requests</Description>
+      <Program>%SystemRoot%\system32\svchost.exe</Program>
+      <Service>dhcp</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>68</LocalPort>
+      <RemotePort>67</RemotePort>
+      <Protocol>UDP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>VPN Managed Tunnel Captive Portal Helper (HTTP-Out)</DisplayName>
+      <Description>Outbound rule to allow Captive Portal authentication requests</Description>
+      <Program>Any</Program>
+      <Package>S-1-15-2-4031499189-395845134-2382308979-1595113985-1660894383-876383995-3173016491</Package>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>Any</LocalPort>
+      <RemotePort>80</RemotePort>
+      <Protocol>TCP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+  <FirewallRule>
+      <DisplayName>VPN Managed Tunnel Captive Portal Helper (HTTPS-Out)</DisplayName>
+      <Description>Outbound rule to allow Captive Portal authentication requests</Description>
+      <Program>Any</Program>
+      <Package>S-1-15-2-4031499189-395845134-2382308979-1595113985-1660894383-876383995-3173016491</Package>
+      <Service>Any</Service>
+      <Direction>Outbound</Direction>
+      <Action>Allow</Action>
+      <Enabled>True</Enabled>
+      <LocalAddress>Any</LocalAddress>
+      <RemoteAddress>Any</RemoteAddress>
+      <LocalPort>Any</LocalPort>
+      <RemotePort>443</RemotePort>
+      <Protocol>TCP</Protocol>
+      <Profile>Any</Profile>
+  </FirewallRule>
+ </NetworkingCore>
+</Configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UNICODE"?>
+<Configuration>
+ <VPNClient>
+  <VPNName>vpn.gov.uk</VPNName> <!-- Define VPN connection name --> 
+  <VPNServerAddress>1.2.3.4</VPNServerAddress> <!-- Define VPN server address --> 
+  <VPNAuthMethod>MachineCertificate</VPNAuthMethod> <!-- Mandatory value DO NOT modify --> 
+  <VPNEncryptLevel>Maximum</VPNEncryptLevel> <!-- Mandatory value DO NOT modify -->
+  <VPNTunnelType>Ikev2</VPNTunnelType> <!-- Mandatory value DO NOT modify -->
+  <VPNIkeSAEncrypt>GCMAES128</VPNIkeSAEncrypt> <!-- Mandatory value DO NOT modify -->
+  <VPNIkeSAInteg>GCMAES128</VPNIkeSAInteg> <!-- Mandatory value DO NOT modify -->
+  <VPNChildSAEncrypt>AES128</VPNChildSAEncrypt> <!-- Mandatory value DO NOT modify -->
+  <VPNChildSAInteg>SHA256</VPNChildSAInteg> <!-- Mandatory value DO NOT modify -->
+  <VPNPFSGroup>ECP256</VPNPFSGroup> <!-- Mandatory value DO NOT modify -->
+  <VPNDHGroup>ECP256</VPNDHGroup> <!-- Mandatory value DO NOT modify -->
+  <VPNProxyServer>User-Defined Value</VPNProxyServer> <!-- Define proxy server address and port, separate with colon --> 
+  <VPNProxyExceptions>User-Defined Value</VPNProxyExceptions> <!-- Define proxy server exceptions, separate with semicolons --> 
+ </VPNClient>
+</Configuration>
